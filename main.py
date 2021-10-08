@@ -182,24 +182,24 @@ class Greetings(KnowledgeEngine):
         # self.declare(Fact(Radiografia_mancha=input("Radiografia_mancha: ")))
         self.declare(Fact(Radiografia_mancha=var14))
 
-    @Rule(Fact(action='find_disease'), Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="no"),
+    @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="no"),
           Fact(Congestion_nasal="no"), Fact(Estornudos="no"), Fact(Dolor_garganta="yes"), Fact(Malestar_garganta="yes"), Fact(flema="yes"),
           Fact(Dificultad_respirar="yes"), Fact(Vomito="yes"), Fact(Diarrea="yes"), Fact(Debilidad_Cansancio="yes"),
-          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="yes"))
+          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="yes")))
     def disease_0(self):
         self.declare(Fact(disease="Covid-19"))
 
-    @Rule(Fact(action='find_disease'), Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="yes"),
+    @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="yes"),
           Fact(Congestion_nasal="no"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="no"), Fact(flema="yes"),
           Fact(Dificultad_respirar="no"), Fact(Vomito="yes"), Fact(Diarrea="yes"), Fact(Debilidad_Cansancio="no"),
-          Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="no"))
+          Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="no")))
     def disease_1(self):
         self.declare(Fact(disease="Gripe"))
 
-    @Rule(Fact(action='find_disease'), Fact(Fiebre="no"), Fact(Tos="yes"), Fact(Moco="no"),
-          Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="no"),
+    @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="no"), Fact(Tos="yes"), Fact(Moco="no"),
+          Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="yes"),
           Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"), Fact(Debilidad_Cansancio="no"),
-          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no"))
+          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
     def disease_2(self):
         self.declare(Fact(disease="Resfriado"))
 
