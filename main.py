@@ -203,7 +203,7 @@ class Greetings(KnowledgeEngine):
 
     @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="no"), Fact(Tos="yes"), Fact(Moco="no"),
                                            Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"),
-                                           Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="no"),
+                                           Fact(Dolor_garganta="no"), Fact(Malestar_garganta="no"), Fact(flema="yes"),
                                            Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"),
                                            Fact(Debilidad_Cansancio="no"),
                                            Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
@@ -218,16 +218,6 @@ class Greetings(KnowledgeEngine):
                                            Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
     def disease_3(self):
         self.declare(Fact(disease="saludable"))
-
-    @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="yes"),
-                                           Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"),
-                                           Fact(Dolor_garganta="yes"), Fact(Malestar_garganta="yes"),
-                                           Fact(flema="yes"),
-                                           Fact(Dificultad_respirar="yes"), Fact(Vomito="yes"), Fact(Diarrea="yes"),
-                                           Fact(Debilidad_Cansancio="yes"),
-                                           Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="yes")))
-    def disease_4(self):
-        self.declare(Fact(disease="urgencia"))
 
     @Rule(Fact(action='find_disease'), Fact(disease=MATCH.disease), salience=-998)
     def disease(self, disease):
