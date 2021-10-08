@@ -9,25 +9,6 @@ symptom_map = {}
 d_desc_map = {}
 d_treatment_map = {}
 
-var1 = 0
-var2 = 0
-var3 = 0
-var4 = 0
-var5 = 0
-var6 = 0
-var7 = 0
-var8 = 0
-var9 = 0
-var10 = 0
-var11 = 0
-var12 = 0
-var13 = 0
-var14 = 0
-response = ''
-app = ''
-
-
-#
 def preprocess():
     global diseases_list, diseases_symptoms, symptom_map, d_desc_map, d_treatment_map
     diseases = open("diseases.txt")
@@ -286,7 +267,8 @@ class Greetings(KnowledgeEngine):
                 max_disease = val
         if_not_matched(max_disease)
 
-
+# Creación de la interfaz gráfica
+# Se tienen en cuenta 2 valores para cada síntoma: 1 cuando si sufre del sintoma y 0 en caso contrario
 def make_interface():
     global app
 
@@ -359,6 +341,7 @@ def make_interface():
 
     text2.grid(column=2, row=1, sticky="E", padx=40, rowspan=13)
 
+    # Aquí asocio los valores de los checkboxes (1 y 0) con respuestas que el sistema experto pueda procesar para el diagnóstico (yes, no)
     def print_selection():
         global var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14
         var1 = 'no' if var1c.get() == 0 else 'yes'
@@ -381,7 +364,7 @@ def make_interface():
         engine = Greetings()
         engine.reset()  # Prepare the engine for the execution.
         engine.run()  # Run it!
-
+    # Creación del botón que lanzará el diagnóstico en el textbox
     msbtn = tk.Button(app, text='DIAGNOSTICAR',
                       command=lambda: print_selection())
     msbtn.grid(column=2, row=15, sticky="E", padx=40)
