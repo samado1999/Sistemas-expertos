@@ -140,7 +140,7 @@ class Greetings(KnowledgeEngine):
     @Rule(Fact(action='find_disease'), NOT(Fact(Dolor_garganta=W())), salience=1)
     def symptom_5(self):
         # self.declare(Fact(Malestar_garganta=input("Malestar_garganta: ")))
-        self.declare(Fact(Dolor_garganta=var5))
+        self.declare(Fact(Dolor_garganta=var6))
 
     @Rule(Fact(action='find_disease'), NOT(Fact(Malestar_garganta=W())), salience=1)
     def symptom_6(self):
@@ -197,7 +197,7 @@ class Greetings(KnowledgeEngine):
         self.declare(Fact(disease="Gripe"))
 
     @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="no"), Fact(Tos="yes"), Fact(Moco="no"),
-          Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="yes"),
+          Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="no"),
           Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"), Fact(Debilidad_Cansancio="no"),
           Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
     def disease_2(self):
