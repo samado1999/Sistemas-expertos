@@ -1,14 +1,3 @@
-Jaundice
-Alzheimers
-Arthritis
-Tuberculosis
-Asthma
-Sinusitis
-Epilepsy
-Heart Disease
-Diabetes
-Glaucoma
-Hyperthyroidism
-Heat Stroke
-Hypothermia
-Covid
+Covid-19
+Gripe
+Resfriado

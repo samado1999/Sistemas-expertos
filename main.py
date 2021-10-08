@@ -23,8 +23,6 @@ var11 = 0
 var12 = 0
 var13 = 0
 var14 = 0
-var15 = 0
-var16 = 0
 response = ''
 app = ''
 
@@ -36,6 +34,7 @@ def preprocess():
     diseases_t = diseases.read()
     diseases_list = diseases_t.split("\n")
     diseases.close()
+    print(diseases_list)
     for disease in diseases_list:
         disease_s_file = open("Disease symptoms/" + disease + ".txt")
         disease_s_data = disease_s_file.read()
@@ -51,6 +50,7 @@ def preprocess():
         disease_s_data = disease_s_file.read()
         d_treatment_map[disease] = disease_s_data
         disease_s_file.close()
+
 
 
 '''
@@ -112,184 +112,96 @@ class Greetings(KnowledgeEngine):
         print("")
         yield Fact(action="find_disease")
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(headache=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Fiebre=W())), salience=1)
     def symptom_0(self):
-        # self.declare(Fact(headache=input("headache: ")))
-        self.declare(Fact(headache=var1))
+        # self.declare(Fact(Fiebre=input("Fiebre: ")))
+        self.declare(Fact(Fiebre=var1))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(back_pain=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Tos=W())), salience=1)
     def symptom_1(self):
-        # self.declare(Fact(back_pain=input("back pain: ")))
-        self.declare(Fact(back_pain=var2))
+        # self.declare(Fact(Tos=input("back pain: ")))
+        self.declare(Fact(Tos=var2))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(chest_pain=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Moco=W())), salience=1)
     def symptom_2(self):
-        # self.declare(Fact(chest_pain=input("chest pain: ")))
-        self.declare(Fact(chest_pain=var3))
+        # self.declare(Fact(Moco=input("chest pain: ")))
+        self.declare(Fact(Moco=var3))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(cough=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Congestion_nasal=W())), salience=1)
     def symptom_3(self):
-        # self.declare(Fact(cough=input("cough: ")))
-        self.declare(Fact(cough=var4))
+        # self.declare(Fact(Congestion_nasal=input("Congestion_nasal: ")))
+        self.declare(Fact(Congestion_nasal=var4))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(fainting=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Estornudos=W())), salience=1)
     def symptom_4(self):
-        # self.declare(Fact(fainting=input("fainting: ")))
-        self.declare(Fact(fainting=var5))
+        # self.declare(Fact(Estornudos=input("Estornudos: ")))
+        self.declare(Fact(Estornudos=var5))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(fatigue=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Dolor_garganta=W())), salience=1)
     def symptom_5(self):
-        # self.declare(Fact(fatigue=input("fatigue: ")))
-        self.declare(Fact(fatigue=var5))
+        # self.declare(Fact(Malestar_garganta=input("Malestar_garganta: ")))
+        self.declare(Fact(Dolor_garganta=var5))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(sunken_eyes=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Malestar_garganta=W())), salience=1)
     def symptom_6(self):
-        # self.declare(Fact(sunken_eyes=input("sunken eyes: ")))
-        self.declare(Fact(sunken_eyes=var7))
+        # self.declare(Fact(Diarrea=input("sunken eyes: ")))
+        self.declare(Fact(Malestar_garganta=var7))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(low_body_temp=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Dificultad_respirar=W())), salience=1)
     def symptom_7(self):
-        # self.declare(Fact(low_body_temp=input("low body temperature: ")))
-        self.declare(Fact(low_body_temp=var8))
+        # self.declare(Fact(Dificultad_respirar=input("low body temperature: ")))
+        self.declare(Fact(Dificultad_respirar=var8))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(restlessness=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(flema=W())), salience=1)
     def symptom_8(self):
-        # self.declare(Fact(restlessness=input("restlessness: ")))
-        self.declare(Fact(restlessness=var9))
+        # self.declare(Fact(flema=input("flema: ")))
+        self.declare(Fact(flema=var9))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(sore_throat=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Vomito=W())), salience=1)
     def symptom_9(self):
-        # self.declare(Fact(sore_throat=input("sore throat: ")))
-        self.declare(Fact(sore_throat=var10))
+        # self.declare(Fact(Dolor_garganta=input("sore throat: ")))
+        self.declare(Fact(Vomito=var10))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(fever=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Diarrea=W())), salience=1)
     def symptom_10(self):
-        # self.declare(Fact(fever=input("fever: ")))
-        self.declare(Fact(fever=var11))
+        # self.declare(Fact(Vomito=input("Vomito: ")))
+        self.declare(Fact(Diarrea=var11))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(nausea=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Debilidad_Cansancio=W())), salience=1)
     def symptom_11(self):
-        # self.declare(Fact(nausea=input("nausea: ")))
-        self.declare(Fact(nausea=var12))
+        # self.declare(Fact(Debilidad_Cansancio=input("Debilidad_Cansancio: ")))
+        self.declare(Fact(Debilidad_Cansancio=var12))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(blurred_vision=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Dolor_huesos=W())), salience=1)
     def symptom_12(self):
-        # self.declare(Fact(blurred_vision=input("blurred vision: ")))
-        self.declare(Fact(blurred_vision=var13))
+        # self.declare(Fact(Dolor_huesos=input("blurred vision: ")))
+        self.declare(Fact(Dolor_huesos=var13))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(tiredness=W())), salience=1)
+    @Rule(Fact(action='find_disease'), NOT(Fact(Radiografia_mancha=W())), salience=1)
     def symptom_13(self):
-        # self.declare(Fact(tiredness=input("tiredness: ")))
-        self.declare(Fact(tiredness=var14))
+        # self.declare(Fact(Radiografia_mancha=input("Radiografia_mancha: ")))
+        self.declare(Fact(Radiografia_mancha=var14))
 
-    @Rule(Fact(action='find_disease'), NOT(Fact(smell=W())), salience=1)
-    def symptom_14(self):
-        # self.declare(Fact(smell=input("without smell: ")))
-        self.declare(Fact(smell=var15))
-
-    @Rule(Fact(action='find_disease'), NOT(Fact(taste=W())), salience=1)
-    def symptom_15(self):
-        # self.declare(Fact(taste=input("without taste: ")))
-        self.declare(Fact(taste=var16))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="yes"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="yes"), Fact(sunken_eyes="no"), Fact(nausea="yes"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
+    @Rule(Fact(action='find_disease'), Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="no"),
+          Fact(Congestion_nasal="no"), Fact(Estornudos="no"), Fact(Dolor_garganta="yes"), Fact(Malestar_garganta="yes"), Fact(flema="yes"),
+          Fact(Dificultad_respirar="yes"), Fact(Vomito="yes"), Fact(Diarrea="yes"), Fact(Debilidad_Cansancio="yes"),
+          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="yes"))
     def disease_0(self):
-        self.declare(Fact(disease="Jaundice"))
+        self.declare(Fact(disease="Covid-19"))
 
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="yes"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
+    @Rule(Fact(action='find_disease'), Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="yes"),
+          Fact(Congestion_nasal="no"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="no"), Fact(flema="yes"),
+          Fact(Dificultad_respirar="no"), Fact(Vomito="yes"), Fact(Diarrea="yes"), Fact(Debilidad_Cansancio="no"),
+          Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="no"))
     def disease_1(self):
-        self.declare(Fact(disease="Alzheimers"))
+        self.declare(Fact(disease="Gripe"))
 
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="yes"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="yes"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
+    @Rule(Fact(action='find_disease'), Fact(Fiebre="no"), Fact(Tos="yes"), Fact(Moco="no"),
+          Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="no"),
+          Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"), Fact(Debilidad_Cansancio="no"),
+          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no"))
     def disease_2(self):
-        self.declare(Fact(disease="Arthritis"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="yes"),
-          Fact(cough="yes"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="yes"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_3(self):
-        self.declare(Fact(disease="Tuberculosis"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="yes"),
-          Fact(cough="yes"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="yes"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_4(self):
-        self.declare(Fact(disease="Asthma"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="yes"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="yes"), Fact(fainting="no"), Fact(sore_throat="yes"), Fact(fatigue="no"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="yes"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_5(self):
-        self.declare(Fact(disease="Sinusitis"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="yes"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_6(self):
-        self.declare(Fact(disease="Epilepsy"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="yes"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="yes"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_7(self):
-        self.declare(Fact(disease="Heart Disease"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="yes"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="yes"),
-          Fact(blurred_vision="yes"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_8(self):
-        self.declare(Fact(disease="Diabetes"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="yes"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="yes"),
-          Fact(blurred_vision="yes"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_9(self):
-        self.declare(Fact(disease="Glaucoma"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="yes"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="yes"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_10(self):
-        self.declare(Fact(disease="Hyperthyroidism"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="yes"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="yes"), Fact(sunken_eyes="no"), Fact(nausea="yes"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_11(self):
-        self.declare(Fact(disease="Heat Stroke"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="no"), Fact(back_pain="no"), Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fainting="yes"), Fact(sore_throat="no"), Fact(fatigue="no"), Fact(restlessness="no"),
-          Fact(low_body_temp="yes"), Fact(fever="no"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="no"), Fact(smell="no"), Fact(taste="no"))
-    def disease_12(self):
-        self.declare(Fact(disease="Hypothermia"))
-
-    @Rule(Fact(action='find_disease'), Fact(headache="yes"), Fact(back_pain="no"), Fact(chest_pain="yes"),
-          Fact(cough="no"), Fact(fainting="no"), Fact(sore_throat="yes"), Fact(fatigue="no"),
-          Fact(restlessness="no"),
-          Fact(low_body_temp="no"), Fact(fever="yes"), Fact(sunken_eyes="no"), Fact(nausea="no"),
-          Fact(blurred_vision="no"), Fact(tiredness="yes"), Fact(smell="yes"), Fact(taste="yes"))
-    def disease_13(self):
-        self.declare(Fact(disease="Covid"))
+        self.declare(Fact(disease="Resfriado"))
 
     @Rule(Fact(action='find_disease'), Fact(disease=MATCH.disease), salience=-998)
     def disease(self, disease):
@@ -324,26 +236,24 @@ class Greetings(KnowledgeEngine):
         text2.grid(column=2, row=1, sticky="E", padx=40, rowspan=13)
 
     @Rule(Fact(action='find_disease'),
-          Fact(headache=MATCH.headache),
-          Fact(back_pain=MATCH.back_pain),
-          Fact(chest_pain=MATCH.chest_pain),
-          Fact(cough=MATCH.cough),
-          Fact(fainting=MATCH.fainting),
-          Fact(sore_throat=MATCH.sore_throat),
-          Fact(fatigue=MATCH.fatigue),
-          Fact(low_body_temp=MATCH.low_body_temp),
-          Fact(restlessness=MATCH.restlessness),
-          Fact(fever=MATCH.fever),
-          Fact(sunken_eyes=MATCH.sunken_eyes),
-          Fact(nausea=MATCH.nausea),
-          Fact(blurred_vision=MATCH.blurred_vision),
-          Fact(tiredness=MATCH.tiredness),
-          Fact(smell=MATCH.smell),
-          Fact(taste=MATCH.taste), NOT(Fact(disease=MATCH.disease)), salience=-999)
-    def not_matched(self, headache, back_pain, chest_pain, cough, fainting, sore_throat, fatigue, restlessness,
-                    low_body_temp, fever, sunken_eyes, nausea, blurred_vision, tiredness, smell, taste):
-        lis = [headache, back_pain, chest_pain, cough, fainting, sore_throat, fatigue, restlessness, low_body_temp,
-               fever, sunken_eyes, nausea, blurred_vision, tiredness, smell, taste]
+          Fact(Fiebre=MATCH.Fiebre),
+          Fact(Tos=MATCH.Tos),
+          Fact(Moco=MATCH.Moco),
+          Fact(Congestion_nasal=MATCH.Congestion_nasal),
+          Fact(Estornudos=MATCH.Estornudos),
+          Fact(Dolor_garganta=MATCH.Dolor_garganta),
+          Fact(Malestar_garganta=MATCH.Malestar_garganta),
+          Fact(Dificultad_respirar=MATCH.Dificultad_respirar),
+          Fact(flema=MATCH.flema),
+          Fact(Vomito=MATCH.Vomito),
+          Fact(Diarrea=MATCH.Diarrea),
+          Fact(Debilidad_Cansancio=MATCH.Debilidad_Cansancio),
+          Fact(Dolor_huesos=MATCH.Dolor_huesos),
+          Fact(Radiografia_mancha=MATCH.Radiografia_mancha), NOT(Fact(disease=MATCH.disease)), salience=-999)
+    def not_matched(self, Fiebre, Tos, Moco, Congestion_nasal, Estornudos, Dolor_garganta, Malestar_garganta, flema,
+                    Dificultad_respirar, Vomito, Diarrea, Debilidad_Cansancio, Dolor_huesos, Radiografia_mancha):
+        lis = [Fiebre, Tos, Moco, Congestion_nasal, Estornudos, Dolor_garganta, Malestar_garganta, flema, Dificultad_respirar,
+               Vomito, Diarrea, Debilidad_Cansancio, Dolor_huesos, Radiografia_mancha]
         max_count = 0
         max_disease = ""
         for key, val in symptom_map.items():
@@ -431,7 +341,7 @@ def make_interface():
     text2.grid(column=2, row=1, sticky="E", padx=40, rowspan=13)
 
     def print_selection():
-        global var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16
+        global var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14
         var1 = 'no' if var1c.get() == 0 else 'yes'
         var2 = 'no' if var2c.get() == 0 else 'yes'
         var3 = 'no' if var3c.get() == 0 else 'yes'
@@ -446,11 +356,7 @@ def make_interface():
         var12 = 'no' if var12c.get() == 0 else 'yes'
         var13 = 'no' if var13c.get() == 0 else 'yes'
         var14 = 'no' if var14c.get() == 0 else 'yes'
-        var15 = 'no'
-        var16 = 'no'
-
         print(var14)
-        print(var15)
 
         preprocess()
         engine = Greetings()
