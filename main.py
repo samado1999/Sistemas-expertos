@@ -52,7 +52,6 @@ def preprocess():
         disease_s_file.close()
 
 
-
 '''
 def identify_disease(*arguments):
     symptom_list = []
@@ -84,9 +83,11 @@ def if_not_matched(disease):
     print("The common medications and procedures suggested by other real doctors are: \n")
     print(treatments + "\n")
 
-    response = "The most probable disease that you have is %s\n" % id_disease + "\n" + "A short description of the " \
-                                                                                       "disease is given below :\n" + \
-               disease_details + "\n" + "The common medications and procedures suggested by other real doctors are: " \
+    response = "La enfermedad más probable que tienes es %s\n" % id_disease + "\n" + "A continuación se ofrece una " \
+                                                                                     "breve descripción de la " \
+                                                                                     "enfermedad:\n" + \
+               disease_details + "\n" + "Los medicamentos y procedimientos comunes sugeridos por otros médicos reales " \
+                                        "son: " \
                                         "\n" + treatments + "\n "
 
     text2 = tk.Text(app, height=20, width=80)
@@ -183,25 +184,50 @@ class Greetings(KnowledgeEngine):
         self.declare(Fact(Radiografia_mancha=var14))
 
     @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="no"),
-          Fact(Congestion_nasal="no"), Fact(Estornudos="no"), Fact(Dolor_garganta="yes"), Fact(Malestar_garganta="yes"), Fact(flema="yes"),
-          Fact(Dificultad_respirar="yes"), Fact(Vomito="yes"), Fact(Diarrea="yes"), Fact(Debilidad_Cansancio="yes"),
-          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="yes")))
+                                           Fact(Congestion_nasal="no"), Fact(Estornudos="no"),
+                                           Fact(Dolor_garganta="yes"), Fact(Malestar_garganta="yes"), Fact(flema="yes"),
+                                           Fact(Dificultad_respirar="yes"), Fact(Vomito="yes"), Fact(Diarrea="yes"),
+                                           Fact(Debilidad_Cansancio="yes"),
+                                           Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="yes")))
     def disease_0(self):
         self.declare(Fact(disease="Covid-19"))
 
     @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="yes"),
-          Fact(Congestion_nasal="no"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="no"), Fact(flema="yes"),
-          Fact(Dificultad_respirar="no"), Fact(Vomito="yes"), Fact(Diarrea="yes"), Fact(Debilidad_Cansancio="no"),
-          Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="no")))
+                                           Fact(Congestion_nasal="no"), Fact(Estornudos="yes"),
+                                           Fact(Dolor_garganta="no"), Fact(Malestar_garganta="no"), Fact(flema="yes"),
+                                           Fact(Dificultad_respirar="no"), Fact(Vomito="yes"), Fact(Diarrea="yes"),
+                                           Fact(Debilidad_Cansancio="no"),
+                                           Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="no")))
     def disease_1(self):
         self.declare(Fact(disease="Gripe"))
 
     @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="no"), Fact(Tos="yes"), Fact(Moco="no"),
-          Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"), Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="no"),
-          Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"), Fact(Debilidad_Cansancio="no"),
-          Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
+                                           Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"),
+                                           Fact(Dolor_garganta="no"), Fact(Malestar_garganta="yes"), Fact(flema="no"),
+                                           Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"),
+                                           Fact(Debilidad_Cansancio="no"),
+                                           Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
     def disease_2(self):
         self.declare(Fact(disease="Resfriado"))
+
+    @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="no"), Fact(Tos="no"), Fact(Moco="no"),
+                                           Fact(Congestion_nasal="no"), Fact(Estornudos="no"),
+                                           Fact(Dolor_garganta="no"), Fact(Malestar_garganta="no"), Fact(flema="no"),
+                                           Fact(Dificultad_respirar="no"), Fact(Vomito="no"), Fact(Diarrea="no"),
+                                           Fact(Debilidad_Cansancio="no"),
+                                           Fact(Dolor_huesos="no"), Fact(Radiografia_mancha="no")))
+    def disease_3(self):
+        self.declare(Fact(disease="saludable"))
+
+    @Rule(Fact(action='find_disease'), AND(Fact(Fiebre="yes"), Fact(Tos="yes"), Fact(Moco="yes"),
+                                           Fact(Congestion_nasal="yes"), Fact(Estornudos="yes"),
+                                           Fact(Dolor_garganta="yes"), Fact(Malestar_garganta="yes"),
+                                           Fact(flema="yes"),
+                                           Fact(Dificultad_respirar="yes"), Fact(Vomito="yes"), Fact(Diarrea="yes"),
+                                           Fact(Debilidad_Cansancio="yes"),
+                                           Fact(Dolor_huesos="yes"), Fact(Radiografia_mancha="yes")))
+    def disease_4(self):
+        self.declare(Fact(disease="urgencia"))
 
     @Rule(Fact(action='find_disease'), Fact(disease=MATCH.disease), salience=-998)
     def disease(self, disease):
@@ -217,10 +243,12 @@ class Greetings(KnowledgeEngine):
         print("The common medications and procedures suggested by other real doctors are: \n")
         print(treatments + "\n")
 
-        response = "The most probable disease that you have is %s\n" % id_disease + "\n" + "A short description of the " \
-                                                                                           "disease is given below :\n" + \
-                   disease_details + "\n" + "The common medications and procedures suggested by other real doctors " \
-                                            "are: " \
+        response = "La enfermedad más probable que tienes es %s\n" % id_disease + "\n" + "A continuación se ofrece una " \
+                                                                                         "breve descripción de la " \
+                                                                                         "enfermedad:\n" + \
+                   disease_details + "\n" + "Los medicamentos y procedimientos comunes sugeridos por otros médicos " \
+                                            "reales " \
+                                            "son: " \
                                             "\n" + treatments + "\n "
 
         text2 = tk.Text(app, height=20, width=80)
@@ -252,7 +280,8 @@ class Greetings(KnowledgeEngine):
           Fact(Radiografia_mancha=MATCH.Radiografia_mancha), NOT(Fact(disease=MATCH.disease)), salience=-999)
     def not_matched(self, Fiebre, Tos, Moco, Congestion_nasal, Estornudos, Dolor_garganta, Malestar_garganta, flema,
                     Dificultad_respirar, Vomito, Diarrea, Debilidad_Cansancio, Dolor_huesos, Radiografia_mancha):
-        lis = [Fiebre, Tos, Moco, Congestion_nasal, Estornudos, Dolor_garganta, Malestar_garganta, flema, Dificultad_respirar,
+        lis = [Fiebre, Tos, Moco, Congestion_nasal, Estornudos, Dolor_garganta, Malestar_garganta, flema,
+               Dificultad_respirar,
                Vomito, Diarrea, Debilidad_Cansancio, Dolor_huesos, Radiografia_mancha]
         max_count = 0
         max_disease = ""
@@ -322,9 +351,9 @@ def make_interface():
     # labelValue = tk.Label(app, textvariable=radioValue)
     # labelValue.grid(column=2, row=0, sticky="E", padx=40)
 
-    w = tk.Label(app, text="Hi! I am Dr.Yar, I am here to help you make your health better. For that \n"
-                           "you'll have to answer a few questions about your conditions. Do you feel \n"
-                           "any of the following symptoms:")
+    w = tk.Label(app, text="¡Hola! Soy el Dr. Yar, estoy aquí para ayudarlo a mejorar su salud. Para \n"
+                           "eso tendrás que responder algunas preguntas sobre tus condiciones. \n"
+                           "¿Siente alguno de los siguientes síntomas?:")
     w.grid(column=2, row=0, sticky="E", padx=40)
 
     text2 = tk.Text(app, height=20, width=80)
